@@ -62,6 +62,4 @@ function spiralTraverse(array) {
     endRow--;
   }
   return answer;
-  //REMOVE 1
-  //REMOVE 2
 }
