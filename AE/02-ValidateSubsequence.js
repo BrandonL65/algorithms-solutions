@@ -15,9 +15,11 @@
 
 */
 
-//Solution 1 - Have Index counting sequence
-//TC: O(n)
-//SC: O(1)
+/*
+Solution 1 - Have Index counting sequence
+TC: O(n)
+SC: O(1)
+*/
 function validateSubsequence(arr, sequence) {
   let sequenceIdx = 0;
 
@@ -29,9 +31,11 @@ function validateSubsequence(arr, sequence) {
   return sequenceIdx === sequence.length;
 }
 
-//Solution 2 - shift sequence array
-//TC: O(n)
-//SC: O(1)
+/*
+Solution 2 - shift sequence array
+TC: O(n)
+SC: O(1)
+*/
 function validateSubsequence2(arr, sequence) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === sequence[0]) {

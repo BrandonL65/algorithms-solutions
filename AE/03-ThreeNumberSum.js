@@ -18,8 +18,16 @@
   [[-8, 2, 6], [-8, 3, 5], [-6, 1, 5]]
 */
 
-// Solution 1  - loop over sorted Array, and have left and right pointers to compare values
-function threeNumberSum(arr, targetSum) {
+/*
+Solution 1  - loop over sorted Array, and have left and right pointers to compare values
+TC: O(n^2)
+SC: O(1)
+-- sort array
+-- loop thru array, and have a pointer at i+1 and at the end 
+-- if all array[i], pointer1, pointer2 add up to target, return the three
+-- if they dont add up, and the sum < targetSum, decrement pointer2, or increment pointer1 if opposite
+*/
+function threeNumberSum(array, targetSum) {
   let allTargetSums = [];
 
   array.sort((a, b) => a - b);
