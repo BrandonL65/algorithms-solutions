@@ -14,7 +14,8 @@
 */
 
 //Solution 1: Nested Loop
-//TC: O(n^2) SC: O(1)
+//TC: O(n^2)
+//SC: O(1)
 function twoNumberSum(arr, targetSum) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
@@ -27,6 +28,8 @@ function twoNumberSum(arr, targetSum) {
 }
 
 //Solution 2: Map out array, and see if any "required" num is present
+//TC: O(n)
+//SC: O(n)
 function twoNumberSum2(arr, targetSum) {
   let arrayNumberMap = new Map();
 
@@ -43,4 +46,25 @@ function twoNumberSum2(arr, targetSum) {
       return [k, neededNum];
     }
   }
+}
+
+//Solution 3: Have a left and right pointer that go towards eachother
+//TC: O(nlogn)
+//SC: O(1)
+function twoNumberSum(array, targetSum) {
+  array.sort((a, b) => a - b);
+  let leftPointer = 0;
+  let rightPointer = array.length - 1;
+
+  while (leftPointer < rightPointer) {
+    let currentSum = array[leftPointer] + array[rightPointer];
+    if (currentSum === targetSum) {
+      return [array[leftPointer], array[rightPointer]];
+    } else if (currentSum < targetSum) {
+      leftPointer++;
+    } else {
+      rightPointer--;
+    }
+  }
+  return [];
 }
