@@ -15,7 +15,7 @@
 
 */
 
-//Solution 1 - Have Index counting seqeunce
+//Solution 1 - Have Index counting sequence
 //TC: O(n)
 //SC: O(1)
 function validateSubsequence(arr, sequence) {
