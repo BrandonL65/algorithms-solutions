@@ -62,5 +62,4 @@ function spiralTraverse(array) {
     endRow--;
   }
   return answer;
-  //remove this with git revert
 }
