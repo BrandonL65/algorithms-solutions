@@ -63,4 +63,5 @@ function longestPeak(array) {
     }
   }
   return longestPeak;
+  //rm comment
 }
