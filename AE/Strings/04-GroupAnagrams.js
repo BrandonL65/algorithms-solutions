@@ -1,5 +1,5 @@
 /*
-
+  Difficulty: Medium
   Write a function that takes in an array of strings and groups anagrams together.
   Anagrams are strings made up of exactly the same letters, where order doesn't
   matter. For example, "cinema" and "iceman" are
