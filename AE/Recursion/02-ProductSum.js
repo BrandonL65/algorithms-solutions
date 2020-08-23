@@ -53,7 +53,6 @@ SC: O(d)
 */
 
 function productSum(array) {
-  // Write your code here.
   return calcProductSum(array);
 }
 
