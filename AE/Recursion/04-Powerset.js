@@ -1,5 +1,5 @@
 /*
-
+  Difficulty: Medium
   Write a function that takes in an array of unique integers and returns its
   powerset.
   The powerset P(X) of a set X is the set of all
@@ -30,4 +30,27 @@ function powerset(array) {
     }
   }
   return allSubsets;
+}
+
+/*
+Method 2 - recursively
+TC and SC are same as iterative solution
+*/
+
+function powerset2(array, idx = null) {
+  if (idx === null) {
+    idx = array.length - 1;
+  }
+  if (idx < 0) {
+    return [[]];
+  }
+  let subsets = powerset2(array, idx - 1);
+  let lengthOfSubsets = subsets.length;
+
+  for (let i = 0; i < lengthOfSubsets; i++) {
+    let currentSubset = subsets[i];
+    let completeSubset = currentSubset.concat(array[idx]);
+    subsets.push(completeSubset);
+  }
+  return subsets;
 }
