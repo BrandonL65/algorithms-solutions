@@ -25,7 +25,7 @@ SC: O(1)
 function selectionSort(array) {
   for (let i = 0; i < array.length; i++) {
     let smallestValue = array[i];
-    let smallestValueIdx = null;
+    let smallestValueIdx = i;
     for (let j = i + 1; j < array.length; j++) {
       if (array[j] < smallestValue) {
         smallestValue = array[j];
