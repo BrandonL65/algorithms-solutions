@@ -31,6 +31,7 @@ E   F   G   H
 Method 1 - Recursion with helper method
 TC: O(v+e)
 SC: O(v)
+- For each node, push their name onto the array, and for each of the Node's children, run the DFS fn on it.
 */
 export class Node {
   name: string;
