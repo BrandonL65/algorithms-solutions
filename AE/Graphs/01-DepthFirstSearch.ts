@@ -1,5 +1,5 @@
 /*
-
+  Difficulty: Easy
   You're given a Node class that has a name and an
   array of optional children nodes. When put together, nodes form
   an acyclic tree-like structure.
@@ -29,6 +29,8 @@ E   F   G   H
 
 /*
 Method 1 - Recursion with helper method
+TC: O(v+e)
+SC: O(v)
 */
 export class Node {
   name: string;
@@ -50,9 +52,6 @@ export class Node {
     return array;
   }
   dfsHelper(array: string[], node: Node) {
-    if (!node) {
-      return;
-    }
     array.push(node.name);
     node.children.forEach((child) => {
       this.dfsHelper(array, child);
@@ -62,6 +61,7 @@ export class Node {
 
 /*
 Method 2 - Recursion w/o Helper method
+TC and SC are same as method 1
 */
 export class Node2 {
   name: string;
