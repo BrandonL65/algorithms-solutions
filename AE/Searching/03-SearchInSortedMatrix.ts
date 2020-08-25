@@ -22,6 +22,7 @@
 
 /*
 Method 1: Loop through each array, and do binary search 
+TC and SC are what I think, they could be wrong
 TC: (nlogn)
 SC: O(1)
 - Loop through every array, and check if target >= first element of array
