@@ -41,3 +41,25 @@ function getPermutationsHelper(array, permutation, allPermutations) {
     getPermutationsHelper(leftOverArray, currentPermutation, allPermutations);
   }
 }
+
+//method 2 - test, same as method 1
+
+function getPermutations2(arr) {
+  let answer = [];
+  getPermHelper(arr, [], answer);
+  return answer;
+}
+
+const getPermHelper = (arr, currentPerm, allPerms) => {
+  if (arr.length < 1 && currentPerm.length >= 1) {
+    allPerms.push(currentPerm);
+    return;
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    let currentValue = arr[i];
+    let newPerm = [...currentPerm, currentValue];
+    let leftOver = arr.slice(0, i).concat(arr.slice(i + 1));
+    getPermHelper(leftOver, newPerm, allPerms);
+  }
+};
