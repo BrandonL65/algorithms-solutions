@@ -43,6 +43,6 @@ export function numberOfWaysToMakeChange(n: number, denoms: number[]) {
       }
     }
   }
-
+  //return the last value in the ways array, which would hold the largest number
   return ways[ways.length - 1];
 }
