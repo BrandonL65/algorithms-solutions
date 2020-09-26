@@ -23,6 +23,16 @@
 
 /*
 Method 1
+TC: O(n*d);
+SC: O(n)
+
+First, we create an array that tracks the number of coins needed for each coin total. The coin total will be expressed by the array index. For example,
+array of index 3 will hold the min coins needed for a total of 3. We initialize the first idx, 0, to 0, because there are 0 ways to sum to 0 coins. 
+
+We then loop through all the denoms, and for each denom, we loop through our array. If the denom value is less than the idx, the array[idx] will
+become the min of what it is currently, or the index of idx-denom+1. 
+
+We choose idx-denom+1 because it we subtract the current Denom, which is 1 coin, and we find whatever is left over, which is the value at idx idx-denom.
 */
 
 function minNumberOfCoinsForChange(n: number, denoms: number[]) {
