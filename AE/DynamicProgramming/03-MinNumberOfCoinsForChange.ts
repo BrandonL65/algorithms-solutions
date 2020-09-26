@@ -20,3 +20,32 @@
   Sample Output 
   3, 2x1 + 1x5
 */
+
+/*
+Method 1
+*/
+
+function minNumberOfCoinsForChange(n: number, denoms: number[]) {
+  let minNumberTracker: number[] = new Array(n + 1).fill(Infinity);
+  minNumberTracker[0] = 0;
+
+  for (let i = 0; i < denoms.length; i++) {
+    let currentDenom = denoms[i];
+
+    for (let amount = 0; amount < minNumberTracker.length; amount++) {
+      if (currentDenom < amount) {
+        minNumberTracker[amount] = Math.min(
+          minNumberTracker[amount],
+          minNumberTracker[amount - currentDenom] + 1
+        );
+      }
+    }
+  }
+
+  let minNumberOfCoinsNeededForTarget =
+    minNumberTracker[minNumberTracker.length - 1];
+  if (minNumberOfCoinsNeededForTarget === Infinity) {
+    return -1;
+  }
+  return minNumberOfCoinsNeededForTarget;
+}
