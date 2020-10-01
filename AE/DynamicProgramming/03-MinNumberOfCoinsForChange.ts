@@ -59,3 +59,27 @@ function minNumberOfCoinsForChange(n: number, denoms: number[]) {
   }
   return minNumberOfCoinsNeededForTarget;
 }
+
+/*
+Method 2 - Almost same as method 1
+*/
+
+function minNumberOfCoinsForChange2(n: number, denoms: number[]) {
+  let ways: number[] = new Array(n + 1).fill(Infinity);
+
+  ways[0] = 0; //Min # of ways to make change for 0 coins is 0 ways
+
+  denoms.forEach((denom) => {
+    for (let i = 0; i < ways.length; i++) {
+      if (denom <= i) {
+        ways[i] = Math.min(ways[i], ways[i - denom] + 1);
+      }
+    }
+  });
+
+  let lastValue = ways[ways.length - 1];
+  if (lastValue === Infinity) {
+    return -1;
+  }
+  return lastValue;
+}
