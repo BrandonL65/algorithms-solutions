@@ -1,6 +1,5 @@
 /*
   Levenshtein Distance
-
   Difficulty: Medium
 
 
@@ -22,7 +21,14 @@
   Method 1
   TC: O(nm), where n is length of str1, m is length of str2
   SC is same as TC 
-  
+  - We initialize a 2D number array to keep track of the changes needed to build up the string
+  - We also initialize the 2D array to use an extra space, for example, if string 1 is "abc", it will actually be seen as " abc", if str2 is "yabd", it will become " yabd"
+  - Essentially, pretend there is an extra space at the beginning, and that will become our base case when we populate the first element of the 2D array.
+  - We populate the first element of the array with 0, since we are technically comparing the first char of both strings, which we set to be " ", an empty string each 
+  - We then populate the columns of the array with the length of str1, with each successive column having +1 from the previous column
+  - We do the same, populating the first row of the arr with the length of str2, with each successive row having +1 from the previous row 
+  - We loop through each "area", or cell in between, and compare the corresponding str1[column] with str2[row]. If they are the same, we use arr[c-1][r-1].
+  - If they are different, we take the smallest of the previous neighbors, and we add 1 to it. 
 */
 const levenshteinDistance = (str1: string, str2: string) => {
   let changesNeededTracker: number[][] = [];
