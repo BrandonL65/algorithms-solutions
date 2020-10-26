@@ -44,3 +44,30 @@ const maxSubsetSumNoAdjacent = (arr: number[]) => {
 
   return maxTracker[maxTracker.length - 1];
 };
+
+/*
+Method 2 - Using two variables rather than array, we save SC with this method 
+TC: O(n)
+SC: O(1)
+*/
+const maxSubsetSumNoAdjacent2 = (arr: number[]) => {
+  if (!arr.length) {
+    return 0;
+  }
+  if (arr.length === 1) {
+    return arr[0];
+  }
+
+  let twoAway = arr[0];
+  let currentLargest = Math.max(arr[0], arr[1]);
+
+  for (let i = 2; i < arr.length; i++) {
+    let currentLargestCopy = currentLargest;
+
+    let newLargest = Math.max(arr[i] + twoAway, currentLargest);
+    twoAway = currentLargestCopy;
+    currentLargest = newLargest;
+  }
+
+  return currentLargest;
+};
