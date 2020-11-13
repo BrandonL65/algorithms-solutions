@@ -114,3 +114,44 @@ const validateBSTHelper = (node: BST, minValue: number, maxValue: number) => {
   }
   return true;
 };
+
+/*
+Method 3 - Not recursive, using a queue
+*/
+
+interface BSTWithMinMax {
+  tree: BST;
+  minVal: number;
+  maxVal: number;
+}
+
+function validateBST(tree: BST) {
+  let queue: BSTWithMinMax[] = [
+    { tree: tree, minVal: -Infinity, maxVal: Infinity },
+  ];
+  while (queue.length) {
+    let currentNode = queue.shift();
+
+    if (
+      currentNode.tree.value < currentNode.minVal ||
+      currentNode.tree.value >= currentNode.maxVal
+    ) {
+      return false;
+    }
+    if (currentNode.tree.left) {
+      queue.push({
+        tree: currentNode.tree.left,
+        minVal: currentNode.minVal,
+        maxVal: currentNode.tree.value,
+      });
+    }
+    if (currentNode.tree.right) {
+      queue.push({
+        tree: currentNode.tree.right,
+        minVal: currentNode.tree.value,
+        maxVal: currentNode.maxVal,
+      });
+    }
+  }
+  return true;
+}
