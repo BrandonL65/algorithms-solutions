@@ -67,3 +67,33 @@ function arrayOfProducts2(array: Array<number>) {
   }
   return answerArray;
 }
+
+/*
+Method 3 - Efficient method, using two arrays that track the cumulative total from left, as well as right. 
+TC: O(n)
+SC: O(n)
+*/
+
+function arrayOfProducts3(array: number[]) {
+  let answer = new Array(array.length);
+  let cumulativeLeft = new Array(array.length);
+  let cumulativeRight = new Array(array.length);
+
+  let currentCumulatedLeft = 1;
+  for (let i = 0; i < array.length; i++) {
+    cumulativeLeft[i] = currentCumulatedLeft;
+    currentCumulatedLeft *= array[i];
+  }
+
+  let currentCumulatedRight = 1;
+  for (let i = array.length - 1; i >= 0; i--) {
+    cumulativeRight[i] = currentCumulatedRight;
+    currentCumulatedRight *= array[i];
+  }
+
+  for (let i = 0; i < answer.length; i++) {
+    answer[i] = cumulativeLeft[i] * cumulativeRight[i];
+  }
+
+  return answer;
+}
