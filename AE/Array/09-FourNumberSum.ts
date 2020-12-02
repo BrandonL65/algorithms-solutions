@@ -21,7 +21,7 @@ Difficulty: Hard
 
 /*
 Method 1, Have three loops inside eachother, so the runtime is O(n^3);
-TC: O(n^3)
+TC: O(n^3)? (unsure because of use of array.sort in the beginning)
 SC: O(n)
 */
 
@@ -52,6 +52,49 @@ const fourNumberSum = (array: number[], targetSum: number) => {
         } else {
           rightPointer--;
         }
+      }
+    }
+  }
+  return answer;
+};
+
+/*
+Method 2 // RECOMMENDED METHOD
+TC: 
+Best: O(n^2)
+Worst: O(n^3)
+SC: O(n^2)
+*/
+
+const fourNumberSum2 = (array: number[], targetSum: number) => {
+  let answer: Array<Array<number>> = [];
+
+  let currentFoundSums = new Map<number, Array<Array<number>>>();
+
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      let currentTotal = array[i] + array[j];
+      let needed = targetSum - currentTotal;
+
+      if (currentFoundSums.has(needed)) {
+        let foundSums = currentFoundSums.get(needed);
+
+        for (let individualSums of foundSums) {
+          answer.push([...individualSums, array[i], array[j]]);
+        }
+      }
+    }
+
+    for (let k = 0; k < i; k++) {
+      let currentTotal = array[i] + array[k];
+      if (currentFoundSums.has(currentTotal)) {
+        let foundCurrentSumsArr = currentFoundSums.get(currentTotal);
+        currentFoundSums.set(currentTotal, [
+          ...foundCurrentSumsArr,
+          [array[i], array[k]],
+        ]);
+      } else {
+        currentFoundSums.set(currentTotal, [[array[i], array[k]]]);
       }
     }
   }
