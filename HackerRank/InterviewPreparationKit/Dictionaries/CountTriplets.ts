@@ -38,6 +38,7 @@ const countTriplets = (arr: Array<number>, r: number) => {
       );
     }
 
+    //whatever happens, always increment the num in numFrequencies
     numFrequencies.set(
       currentNum,
       numFrequencies.has(currentNum) ? numFrequencies.get(currentNum) + 1 : 1
