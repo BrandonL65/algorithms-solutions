@@ -112,3 +112,42 @@ function makeAnagram(a, b) {
   console.log(totalDeletions);
   return totalDeletions;
 }
+
+/*
+Solution 2 - very similar to solution 1
+*/
+function makingAnagram2(a, b) {
+  let freqsInA = new Map();
+  let freqsInB = new Map();
+  let deletionsNeeded = 0;
+
+  for (let digit of a) {
+    let amountInMap = freqsInA.get(digit) || 0;
+    freqsInA.set(digit, amountInMap + 1);
+  }
+  for (let digit of b) {
+    let amountInMap = freqsInB.get(digit) || 0;
+    freqsInB.set(digit, amountInMap + 1);
+  }
+
+  for (let [char, freqOfChar] of freqsInA) {
+    let correspondingFreqInB = freqsInB.get(char);
+
+    if (!correspondingFreqInB) {
+      deletionsNeeded += freqOfChar;
+      continue;
+    }
+    if (freqOfChar > correspondingFreqInB) {
+      deletionsNeeded += freqOfChar - correspondingFreqInB;
+    } else {
+      deletionsNeeded += correspondingFreqInB - freqOfChar;
+    }
+    mapOfB.delete(char);
+  }
+
+  for (let [char, freqOfChar] of mapOfB) {
+    deletionsNeeded += freqOfChar;
+  }
+
+  return deletionsNeeded;
+}
