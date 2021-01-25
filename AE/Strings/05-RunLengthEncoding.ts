@@ -33,6 +33,11 @@ TC: O(n)
 SC: O(n)
 */
 
+/*
+Method 1
+TC: O(n)
+SC: O(n)
+*/
 function runLengthEncoding(string: string) {
   let answer = "";
 
@@ -59,4 +64,38 @@ function runLengthEncoding(string: string) {
   answer += lastLetter;
 
   return answer;
+}
+
+/*
+Method 2
+TC: O(n)
+SC: O(n)
+*/
+
+export function runLengthEncoding2(string: string) {
+  let encodedAnswer: string = "";
+
+  let currentChar = "";
+  let currentRunLength = 0;
+
+  for (let i = 0; i < string.length; i++) {
+    if (currentChar === "") {
+      currentChar = string[i];
+      currentRunLength = 1;
+    } else if (string[i] !== currentChar) {
+      encodedAnswer += `${currentRunLength}${currentChar}`;
+      currentRunLength = 1;
+    } else if (string[i] === currentChar) {
+      if (currentRunLength === 9) {
+        encodedAnswer += `9${currentChar}`;
+        currentRunLength = 1;
+      } else {
+        currentRunLength++;
+      }
+    }
+    if (i === string.length - 1) {
+      encodedAnswer += `${currentRunLength}${currentChar}`;
+    }
+  }
+  return encodedAnswer;
 }
